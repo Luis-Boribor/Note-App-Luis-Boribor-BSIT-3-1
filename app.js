@@ -4,37 +4,37 @@ const write = require('./write');
 const del = require('./del');
 const update = require('./update');
 
-const text = process.argv
+const cmd = process.argv
 
 var note = {}
 
-if(text[2] == 'add') {
+if(cmd[2] == 'add') {
     note = {
-        id: text[3],
-        title: text[4],
-        body: text[5]
+        id: cmd[3],
+        title: cmd[4],
+        body: cmd[5]
     }
     var oldNote = read()
     add(note, oldNote)
 }
-if(text[2] == 'read') {
+if(cmd[2] == 'read') {
     const present = require('./present')
 
     present(read())
 }
-if(text[2] === 'delete') {
-    let id = text[3];
+if(cmd[2] === 'delete') {
+    let id = cmd[3];
     let oldNote = read();
     let del = require('./del');
     del(id,oldNote);
 
     console.log(read());
 }
-if(text[2] == 'update') {
+if(cmd[2] == 'update') {
     let note = {
-        id: text [3],
-        title: text [4],
-        body: text [5]
+        id: cmd [3],
+        title: cmd [4],
+        body: cmd [5]
     }
     const oldNote = read ()
     update(note, oldNote)
